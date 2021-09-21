@@ -1,0 +1,16 @@
+
+<div class="tooltip-container top">
+  <input 
+    [type]="inputInfo.type"
+    [attr.maxlength]="inputInfo.maxLength"
+    [placeholder]="inputInfo.placeholder"
+    [class]="inputInfo.flag ? '' : 'border-red'"
+    (input)="onInput($event)"
+  >
+  <span
+    class="tooltiptext"
+    *ngIf="!inputInfo.flag"
+  >
+    {{ inputInfo.tooltipText }}
+  </span>
+</div>

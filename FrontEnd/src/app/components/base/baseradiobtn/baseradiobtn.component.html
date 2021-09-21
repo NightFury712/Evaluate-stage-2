@@ -1,0 +1,16 @@
+<label 
+  [for]="radioInfo.id"
+  class="radio"
+>
+  <input
+    type="radio"
+    [name]="radioInfo.name"
+    [id]="radioInfo.id"
+    class="radio-input"
+    [value]="radioInfo.value"
+    (change)="radioInput($event)"
+    [checked]="radioInfo.checked"
+  />
+  <div class="radio-radio"></div>
+  <span class="radio-title">{{ radioInfo.title }}</span>
+</label>

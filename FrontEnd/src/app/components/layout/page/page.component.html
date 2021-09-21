@@ -1,0 +1,65 @@
+<app-basespinner
+  *ngIf="spinnerFlag"
+>
+</app-basespinner>
+<app-baseexportpopup
+  *ngIf="exportPopupFlag"
+  [popupInfoFlag]="popupInfoFlag.export"
+  (closeExportPopup)="closeExportPopup()"
+>
+</app-baseexportpopup>
+<app-baseimportpopup
+  *ngIf="importPopupFlag"
+  (closeImportPopup)="closeImportPopup()"
+  (submitFormData)="submitFormData($event)"
+>
+</app-baseimportpopup>
+<div class="content">
+  <div class="header-content">
+    <div class="title">Khách hàng</div>
+  </div>
+  <div class="layout-dictionary-body">
+    <div class="filter-bar">
+      <div class="filter-right">
+        <div class="filter-right-item">
+          <app-basebutton
+            btnStyle="m-btn-none"
+            icon="mi mi-24 mi-export-24"
+            text=""
+            [tooltipInfo]="{place: 'bottom', text: 'Xuất'}"
+            (btnClick)="btnExportClick()"
+          >
+          </app-basebutton>
+        </div>
+        <div class="filter-right-item">
+          <app-basebutton
+            btnStyle="m-btn-none"
+            icon="mi mi-24 mi-import-24"
+            text=""
+            [tooltipInfo]="{place: 'bottom', text: 'Nhập'}"
+            (btnClick)="btnImportClick()"
+          >
+          </app-basebutton>
+        </div>
+        <div class="filter-right-item hide">
+          <button class="m-btn m-btn-refresh">
+            <div class="mi mi-24 mi-refresh"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-employee">
+      <app-basetable
+        [ths]="ths"
+        [customers]="customers"
+      >
+      </app-basetable>
+    </div>
+    <app-basepagination
+      [pageInfomation]="pageInfo"
+      [pagingArray]="pagingArray"
+      (radioValue)="radioChange($event)"
+    >
+    </app-basepagination>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+
+.content {
+  position: absolute;
+  top: 48px;
+  left: 178px;
+  right: 0;
+  bottom: 0;
+  transition: 0.22s;
+  padding: 0 20px 15px 20px;
+  background-color: #f4f5f8;
+  box-sizing: border-box;
+}
+
+.content .header-content {
+  display: flex;
+  align-items: center;
+  padding: 24px 30px 24px 0;
+  position: relative;
+}
+
+.content .header-content .title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+}
+
+.content .header-content .content-feature {
+  position: absolute;
+  right: 0;
+}
+
+.layout-dictionary-body {
+  background-color: #fff;
+  height: calc(100vh - 144px);
+  position: relative;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  overflow: auto;
+  /* box-shadow: 0 0 5px #bbb; */
+}

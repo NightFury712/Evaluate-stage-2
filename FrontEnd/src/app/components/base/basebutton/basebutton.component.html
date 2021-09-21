@@ -1,0 +1,21 @@
+<div 
+  class="tooltip-container"
+  [class]="tooltipInfo.place"
+  style="z-index: 1000;"
+  >
+  <button 
+    [ngClass]="btnStyle"
+    (click)="onClick()"
+  >
+    <div class="icon">
+      <div 
+        [ngClass]="icon"
+      >
+      </div>
+    </div>
+    <span>{{ text }}</span>
+  </button>
+  <span class="tooltiptext">
+    {{ tooltipInfo.text }}
+  </span>
+</div>

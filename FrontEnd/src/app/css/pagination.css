@@ -1,0 +1,81 @@
+
+.paging-bar {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  width: 100%;
+  flex: 3;
+  padding: 0 30px;
+  position: sticky;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 5;
+  box-sizing: border-box;
+}
+
+.paging-bar .paging-numtotal {
+  flex: 1;
+}
+
+.paging-bar .pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.paging-bar .paging-current-numtotal {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.paging-bar .pagination .first-page,
+.paging-bar .pagination .pre-page,
+.paging-bar .pagination .next-page,
+.paging-bar .pagination .last-page
+{
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: #fff;
+}
+
+.paging-bar .pagination .first-page:hover,
+.paging-bar .pagination .pre-page:hover,
+.paging-bar .pagination .next-page:hover,
+.paging-bar .pagination .last-page:hover {
+  border-radius: 4px;
+}
+
+
+.paging-bar .pagination .page-number {
+  display: flex;
+  align-items: center;
+  margin: 0 5px;
+}
+
+.paging-bar .pagination .page-number .page-number-item {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  /* margin: 0 5px; */
+  color: #000;
+  text-decoration: none;
+}
+
+.pagination .page-number input[type="radio"]:checked ~ label {
+  color: #000 !important;
+  background-color: #fff;
+  border: 1px solid #bbb;
+  font-weight: bold;
+}
+
+.paging-bar .pagination .page-number .page-number-item:hover {
+  color: #000;
+  background-color: #fff;
+  cursor: pointer;
+}
+

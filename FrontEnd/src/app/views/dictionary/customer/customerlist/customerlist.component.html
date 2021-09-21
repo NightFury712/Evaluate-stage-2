@@ -1,0 +1,30 @@
+<tbody>
+  <tr>
+    <td class="out-left-white-16"></td>
+    <td class="td-check-box">
+      <input type="checkbox" id="'checkbox-customer-' + index" class="cb-input" />
+      <label for="'checkbox-customer-' + index">
+        <i class="fas fa-check"></i>
+      </label>
+    </td>
+    <td
+      *ngFor="let th of ths"
+      class="table-item"
+      [ngClass]="{ center: th.center === true, right: th.right === true }"
+    ></td>
+    <!-- <td
+        v-for="(th, idx) in ths"
+        :class="[
+          'table-item',
+          { center: th.center, right: th.right },
+          'td-' + th.fieldName,
+        ]"
+        :style="sizeTdStyle(th)"
+        :key="idx"
+      >
+      </td> -->
+    <td class="td-function"></td>
+    <td class="out-right-white-16"></td>
+  </tr>
+</tbody>
+

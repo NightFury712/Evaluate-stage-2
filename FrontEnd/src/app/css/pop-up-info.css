@@ -1,0 +1,64 @@
+.ms-message-box {
+  width: 444px; 
+  min-width: 444px; 
+  z-index: 400;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.ms-message-box--content {
+  width: 100%;
+  height: 100%;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.ms-message-box--content .ms-content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ms-message-box--content .ms-content .message-content {
+  padding-left: 12px;
+  font-size: 13px;
+}
+
+.ms-message-box--content .ms-content .message-content .message {
+  overflow: hidden;
+  word-break: break-word;
+  max-width: 250px;
+}
+
+.ms-message-box--content .mess-line {
+  height: 1px;
+  background: #b8bcc3;
+  margin-bottom: 20px;
+}
+
+.ms-message-box--content .mess-footer {
+  display: flex;
+  position: relative;
+  height: 36px;
+}
+
+.ms-message-box--content .mess-footer .Left {
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.ms-message-box--content .mess-footer button {
+  z-index: 1;
+}
+
+.ms-message-box--content .mess-footer .Right {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  position: absolute;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}

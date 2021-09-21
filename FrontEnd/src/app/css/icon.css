@@ -1,0 +1,205 @@
+.mi {
+  background-image: url(../../assets/content/img/Sprites.64af8f61.svg);
+  background-repeat: no-repeat;
+}
+
+.mi-24 {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.mi-16 {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.mi-14 {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.mi-36 {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.mi-48 {
+  width: 48px !important;
+  height: 48px !important;
+}
+
+.mi-sidebar-dashboard {
+  background-position: -30px -1628px;
+}
+
+.nav-item.router-actived .mi-sidebar-dashboard {
+  background-position: -30px -1585px;
+}
+
+.mi-sidebar-cash {
+  background-position: -73px -1628px;
+}
+
+.nav-item.router-actived .mi-sidebar-cash {
+  background-position: -73px -1585px;
+}
+
+.mi-sidebar-bank {
+  background-position: -117px -1628px;
+}
+
+.nav-item.router-actived .mi-sidebar-bank {
+  background-position: -117px -1585px;
+}
+
+.mi-sidebar-pu {
+  background-position: -161px -1628px;
+}
+
+.nav-item.router-actived .mi-sidebar-pu {
+  background-position: -161px -1585px;
+}
+
+.mi-sidebar-sale {
+  background-position: -204px -1628px;
+}
+
+.nav-item.router-actived .mi-sidebar-sale {
+  background-position: -204px -1585px;
+}
+
+.mi-sidebar-invoice {
+  background-position: -249px -1628px;
+}
+
+.nav-item.router-actived .mi-sidebar-invoice {
+  background-position: -249px -1585px;
+}
+
+.mi-sidebar-stock {
+  background-position: -291px -1628px;
+}
+
+.nav-item.router-actived .mi-sidebar-stock {
+  background-position: -291px -1585px;
+}
+
+.mi-sidebar-tools {
+  background-position: -336px -1628px;
+}
+
+.nav-item.router-actived .mi-sidebar-tools {
+  background-position: -336px -1585px;
+}
+
+.mi-sidebar-fixed-assets {
+  background-position: -378px -1630px;
+}
+
+.nav-item.router-actived .mi-sidebar-fixed-assets {
+  background-position: -378px -1587px;
+}
+
+.mi-sidebar-customer {
+  background-position: -116px -1660px;
+}
+
+.nav-item.router-actived .mi-sidebar-customer {
+  background-position: -161px -1660px;
+}
+
+.mi-sidebar-tax {
+  background-position: -423px -1630px;
+}
+
+.nav-item.router-actived .mi-sidebar-tax {
+  background-position: -423px -1587px;
+}
+
+.mi-sidebar-price {
+  background-position: -467px -1628px;
+}
+
+.nav-item.router-actived .mi-sidebar-price {
+  background-position: -467px -1585px;
+}
+
+.mi-sidebar-general {
+  background-position: -510px -1628px;
+}
+
+.nav-item.router-actived .mi-sidebar-general {
+  background-position: -510px -1585px;
+}
+
+.mi-refresh {
+  background-position: -423px -201px;
+}
+
+.m-btn-refresh:hover .mi-refresh {
+  background-position: -1096px -88px;
+}
+
+.mi-search {
+  background-position: -992px -360px;
+}
+
+.mi-arrow-up--blue {
+  background-position: -896px -359px;
+}
+
+.mi-help {
+  background-position: -89px -144px;
+}
+
+.mi-times {
+  background-position: -144px -144px;
+}
+
+.mi-chevron-down {
+  background-position: -1076px -32px;
+}
+
+.mi-bell__nav {
+  background-position: -788px -30px;
+}
+
+.mi-exclamation-question-48 {
+  background-position: -826px -456px;
+}
+
+.mi-arrow-dropdown {
+  background-position: -560px -359px;
+}
+
+.mi-rectangle-warning-48 {
+  background-position: -592px -456px;
+}
+
+.mi-rectangle-error-48 {
+  background-position: -746px -456px;
+}
+
+.mi-rectangle-excel-24 {
+  background-position: -704px -200px;
+}
+
+.mi-rectangle-excel-36 {
+  background-position: -612px -831px;
+}
+
+.mi-export-24 {
+  background-position: -144px -200px;
+}
+
+button:hover .mi-export-24 {
+  background-position: -144px -256px;
+}
+
+.mi-import-24 {
+  background-position: -480px -200px;
+}
+
+button:hover .mi-import-24 {
+  background-position: -480px -256px;
+}

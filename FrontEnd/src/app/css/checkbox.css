@@ -1,0 +1,35 @@
+.cb-input {
+  display: none;
+}
+
+.cb-input ~ label {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: block;
+  cursor: pointer;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.15s;
+  border: 1px solid #bbb;
+}
+
+.cb-input ~ label i {
+  color: #2ca01c;
+  transform: scale(0);
+  transition: transform 0.15s;
+}
+
+.cb-input:hover ~ label {
+  background-color: #fff;
+}
+
+.cb-input:checked ~ label {
+  border: 1px solid #2ca01c;
+}
+
+.cb-input:checked ~ label i {
+  transform: scale(1);
+}

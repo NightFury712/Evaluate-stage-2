@@ -1,0 +1,58 @@
+<table border="0" style="width: 100%"  cellspacing="0">
+  <thead>
+    <tr>
+      <th class="out-left-white-16"></th>
+      <th class="th-checkbox">
+        <input 
+        type="checkbox" 
+        id="'checkbox-employee-all'"
+        class="cb-input"
+        >
+        <label for="'checkbox-employee-all'">
+          <i class="fas fa-check"></i>
+        </label>
+      </th>
+      <th 
+        *ngFor="let th of ths; index as index;"
+        [ngClass]="{'center': th.center === true, 'right': th.right === true}"
+        [class]="'th-' + th.fieldName"
+        [ngStyle]="sizeStyle(th)"
+      >
+        <span>{{ th.content }}</span>
+      </th>
+      <th 
+        class="th-function"
+        style="min-width: 150px;"
+      >
+        Chức năng
+      </th>
+      <th class="out-right-white-16"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let customer of customers; index as index"
+    >
+      <td class="out-left-white-16"></td>
+      <td class="td-checkbox">
+        <input 
+          type="checkbox" 
+          [id]="'checkbox-customer-' + index" 
+          class="cb-input"
+        />
+        <label [for]="'checkbox-customer-'+ index">
+          <i class="fas fa-check"></i>
+        </label>
+      </td>
+      <td
+        *ngFor="let th of ths"
+        [class]="'td-' + th.fieldName"
+        [ngClass]="{ center: th.center === true, right: th.right === true }"
+      >
+       {{ customer[th.fieldName]}}
+      </td>
+      <td class="td-function"></td>
+      <td class="out-right-white-16"></td>
+    </tr>
+  </tbody>
+</table>

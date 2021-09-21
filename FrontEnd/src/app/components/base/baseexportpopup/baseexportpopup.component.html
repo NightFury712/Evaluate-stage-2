@@ -1,0 +1,140 @@
+<app-basepopupinfo
+  [popup]="popup"
+  *ngIf="popupInfoFlag"
+>
+</app-basepopupinfo>
+
+<div class="dark-background export-popup-background">
+</div>
+<div class="export-popup middle">
+  <div class="popup-header flex">
+    <div class="popup-header-title">
+      <span class="title">Xuất khẩu dữ liệu</span>
+    </div>
+    <div class="btn-close-popup">
+      <app-basebutton
+        btnStyle="m-btn-none"
+        icon="mi mi-24 mi-help"
+        text=""
+        [tooltipInfo]="{ place: 'bottom', text: 'Giúp' }"
+      >
+      </app-basebutton>
+      <app-basebutton
+        btnStyle="m-btn-none"
+        icon="mi mi-24 mi-times"
+        text=""
+        [tooltipInfo]="{ place: 'bottom', text: 'Đóng (ESC)' }"
+        (btnClick)="closeExportPopupClick()"
+      >
+      </app-basebutton>
+    </div>
+  </div>
+  <div class="popup-content-container">
+    <div class="popup-content">
+      <div class="title">
+        <span class="text">Chọn số lượng bản ghi xuất khẩu:</span>
+      </div>
+    </div>
+    <div class="content-selection flex">
+      <div 
+        class="selection-item mg-b-12"
+        *ngFor="let info of radioInfo; index as index"
+      >
+        <app-baseradiobtn
+          [radioInfo]="{
+            id: 'radio-' + index,
+            name: 'export-selector',
+            value: info.value,
+            title: info.title,
+            checked: info.checked
+          }"
+          (radioChange)="radioChange($event)"
+        >
+        </app-baseradiobtn>
+      </div>
+    </div>
+    <div 
+      class="form-container mg-b-12"
+      *ngIf="exportCustomFlag"
+    >
+      <div class="number-record-export">
+        <div class="title mg-b-12">
+          <span class="text">
+            Vui lòng nhập số bản ghi cần xuất khẩu:
+          </span>
+        </div>
+        <div class="form-main flex w-full">
+          <div class="form-item w-1/2">
+            <div class="form-item-title mg-b-8">
+              <span class="text">Từ: </span>
+            </div>
+            <div class="form-item-content">
+              <app-basetextbox
+                [inputInfo]="{
+                  type: inputInfo.begin.type,
+                  id: inputInfo.begin.id,
+                  maxLength: inputInfo.begin.maxLength,
+                  placeholder: inputInfo.begin.placeholder,
+                  flag: inputInfo.begin.flag,
+                  tooltipText: inputInfo.begin.tooltipText
+                }"
+                (inputChange)="inputChange($event)"
+              >
+              </app-basetextbox>
+            </div>
+          </div>
+          <span class="space flex"></span>
+          <div class="form-item w-1/2">
+            <div class="form-item-title mg-b-8">
+              <span class="text">Đến: </span>
+            </div>
+            <div class="form-item-content">
+              <app-basetextbox
+                [inputInfo]="{
+                  type: inputInfo.end.type,
+                  id: inputInfo.end.id,
+                  maxLength: inputInfo.end.maxLength,
+                  placeholder: inputInfo.end.placeholder,
+                  flag: inputInfo.end.flag,
+                  tooltipText: inputInfo.end.tooltipText
+                }"
+                (inputChange)="inputChange($event)"
+              >
+              </app-basetextbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="export-popup-footer">
+      <div class="footer-button w-full">
+        <div class="footer-button-left">
+          <app-basebutton
+            btnStyle="m-btn m-btn-secondary"
+            icon=""
+            text="Hủy"
+            [tooltipInfo]="{
+              place: 'top',
+              text: 'Đóng (ESC)'
+            }"
+            (btnClick)="closeExportPopupClick()"
+          >
+          </app-basebutton>
+        </div>
+        <div class="footer-button-right">
+          <app-basebutton
+              btnStyle="m-btn m-btn-primary"
+              icon=""
+              text="Lưu"
+              [tooltipInfo]="{
+                place: 'top',
+                text: 'Lưu (Ctrl + S)'
+              }"
+              (btnClick)="onFormExportSubmit()"
+            >
+            </app-basebutton>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

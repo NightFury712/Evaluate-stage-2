@@ -1,0 +1,70 @@
+<div>
+  <div
+    class="dark-background popup-background"
+  >
+  </div>
+  <div class="middle ms-message-box" >
+    <div class="ms-message-box--content">
+      <div class="ms-content">
+        <div class="icon-message">
+          <div 
+            class="mi mi-48"
+            [class]="popup.icon"
+          >
+          </div>
+        </div>
+        <div class="message-content">
+          <span id="idMessage" class="message">
+            {{ popup.title }}
+          </span>
+        </div>
+      </div>
+      <div class="mess-line"></div>
+      <div class="mess-footer">
+        <div class="Left">
+          <app-basebutton
+            *ngIf="popup.btnContinue.flag"
+            btnStyle="m-btn m-btn-secondary"
+            icon=""
+            [text]="popup.btnContinue.title"
+            [tooltipInfo]="{
+              place: 'bottom',
+              text: 'Đóng (ESC)'
+            }"
+            (btnClick)="togglePopup()"
+          >
+          </app-basebutton>
+        </div>
+        <div 
+          class="Right"
+          [class]="popup.center ? 'justify-content-center' : ''"
+        >
+          <app-basebutton
+            *ngIf="popup.btnClose.flag"
+            btnStyle="m-btn m-btn-secondary"
+            icon=""
+            [text]="popup.btnClose.title"
+            [tooltipInfo]="{
+              place: 'bottom',
+              text: 'Đóng (ESC)'
+            }"
+            (btnClick)="btnCloseClick()"
+          >
+          </app-basebutton>
+          <app-basebutton
+            *ngIf="popup.btnSave.flag"
+            btnStyle="m-btn m-btn-primary"
+            icon=""
+            [text]="popup.btnSave.title"
+            [tooltipInfo]="{
+              place: 'bottom',
+              text: 'Đóng (ESC)'
+            }"
+            (btnClick)="btnSaveClick()"
+          >
+          </app-basebutton>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

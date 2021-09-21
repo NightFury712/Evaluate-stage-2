@@ -1,0 +1,124 @@
+:host {
+  --btn-primary: #2ca01c;
+  --btn-primary-hover: #35bf22;
+  --btn-secondary: #fff;
+  --btn-secondary-hover: #d2d3d6;
+  --btn-secondary-border: #8d9096;
+}
+
+.m-btn {
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  height: 36px;
+  font-size: 13px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 20px;
+  transition: .15s;
+}
+
+.m-btn-none {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+  padding: 1px 2px;
+}
+
+.m-btn-secondary {
+  border: 1px solid var(--btn-secondary-border);
+  background-color: var(--btn-secondary);
+  color: #000;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.m-btn-secondary:hover {
+  background-color: var(--btn-secondary-hover);
+}
+
+.m-btn-primary {
+  background-color: var(--btn-primary);
+  color: #fff;
+}
+
+.m-btn-primary:hover {
+  background-color: var(--btn-primary-hover);
+  
+}
+
+.btn-save {
+  padding: 8px 20px;
+}
+
+.btn-save:focus {
+  background-color: var(--btn-primary-hover);
+}
+
+.m-btn-refresh {
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
+  padding: 0;
+  margin: 0 6px;
+}
+
+.m-btn-refresh:hover {
+  background-color: #fff !important;
+}
+
+.btn-cancel {
+  color: #000;
+  background-color: var(--btn-secondary);
+  margin-right: 16px;
+  padding: 8px 20px;
+  border: 1px solid var(--btn-secondary-border);
+}
+
+.btn-cancel:hover, .btn-cancel:focus {
+  background-color: var(--btn-secondary-hover);
+}
+
+.btn-reset {
+  position: absolute;
+  padding: 0;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 13px;
+  right: 36px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+.btn-reset i {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-reset:hover {
+  background-color: #e5e5e5;
+}
+
+.tooltip .btn-reset-input {
+  top: 35% !important;
+  right: 12px;
+}
+
+.tooltip .btn-reset-date {
+  top: 35% !important;
+  right: 40px;
+}
+

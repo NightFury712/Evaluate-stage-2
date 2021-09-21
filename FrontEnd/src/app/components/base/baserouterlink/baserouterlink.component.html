@@ -1,0 +1,9 @@
+<!-- <a [ngRouterLink]="routerInfo.href" class="nav-item" routerLinkActive="router-actived">
+  <div [ngClass]="nav-item-icon mi mi-24 routerInfo.icon"></div>
+  <div class="nav-item-text">{{ routerInfo.title }}</div>
+</a> -->
+
+<a [routerLink]="routerInfo.href" class="nav-item" routerLinkActive="router-actived">
+  <div class="nav-item-icon mi mi-24" [class]="routerInfo.icon"></div>
+  <div class="nav-item-text">{{ routerInfo.title }}</div>
+</a>

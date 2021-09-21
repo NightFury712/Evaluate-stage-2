@@ -1,0 +1,60 @@
+<div class="paging-bar">
+  <div class="paging-numtotal">
+    Tổng số: <b> {{ pageInfomation.totalRecord }}</b>
+  </div>
+  <div class="paging-current-numtotal">
+    <div class="pagination">
+      <button
+        class="pre-page"
+        (click)="movePre()"
+        [disabled]="pageInfomation.pageIndex === 0"
+      >
+        <span>Trước</span>
+      </button>
+      <div class="page-number">
+        <div 
+          *ngFor="let item of pagingArray; index as index;"
+        >
+          <input 
+            type="radio"
+            name="radio-paging"
+            [id]="'radio-' + index"
+            class="hide"
+            [value]="item + 1"
+            [disabled]="item === -1"
+            (change)="choose($event)"
+            [checked]="radioInput===(item+1)"
+          >
+          <label 
+            [for]="'radio-' + index" 
+            class="page-number-item"
+          >
+            {{ item === -1 ? "..." : item + 1}}
+          </label>
+        </div>
+        <!-- <div v-for="(item, index) in pagingArray" :key="index">
+          <input
+            type="radio"
+            name="radio-paging"
+            :id="'radio-' + index"
+            class="hide"
+            v-model="radioInput"
+            :value="item + 1"
+            :disabled="item === -1"
+          />
+          <label :for="'radio-' + index" class="page-number-item">{{
+            item === -1 ? "..." : item + 1
+          }}</label>
+        </div> -->
+      </div>
+
+      <button
+        class="next-page"
+        (click)="moveNext()"
+        [disabled]="pageInfomation.pageIndex === pageInfomation.totalPage - 1"
+      >
+        <span>Sau</span>
+      </button>
+    </div>
+  </div>
+</div>
