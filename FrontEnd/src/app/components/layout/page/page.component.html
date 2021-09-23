@@ -4,7 +4,8 @@
 </app-basespinner>
 <app-baseexportpopup
   *ngIf="exportPopupFlag"
-  [popupInfoFlag]="popupInfoFlag.export"
+  [pageInfo]="pageInfo"
+  (toggleSpinner)="toggleSpinner($event)"
   (closeExportPopup)="closeExportPopup()"
 >
 </app-baseexportpopup>

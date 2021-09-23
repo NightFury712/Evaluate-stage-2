@@ -120,3 +120,11 @@ export const Popup: any = {
   },
 };
 
+// Thông tin icon cho toast message
+export const Icons = {
+  success: 'fas fa-check-circle',
+  info: 'fas fa-info-circle',
+  warning: 'fas fa-exclamation-circle',
+  error: 'fas fa-exclamation-triangle'
+}
+

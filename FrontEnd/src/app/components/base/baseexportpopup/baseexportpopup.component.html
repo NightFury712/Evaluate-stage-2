@@ -1,6 +1,7 @@
 <app-basepopupinfo
   [popup]="popup"
-  *ngIf="popupInfoFlag"
+  *ngIf="popup.isShow"
+  (btnSave)="btnSavePopupInfo()"
 >
 </app-basepopupinfo>
 

@@ -41,4 +41,14 @@ export class CustomerService {
     }
     return response;
   }
+
+  public async ExportCustomers(start: any, end: any) {
+    let response;
+    try {
+      response = await this.http.get<any>(`${this.apiUrl}/ExportCustomers/sender?start=${start}&end=${end}`).toPromise();
+    } catch (error: any) {
+      console.log(error.response);
+      response = error.response.Data;
+    }
+  }
 }

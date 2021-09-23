@@ -108,8 +108,8 @@ export class BaseimportpopupComponent implements OnInit {
         })
         customers.push(customer);
       })
-      console.log(customers);
-      // this.submitFormData.emit(customers);
+      // console.log(customers);
+      this.submitFormData.emit(customers);
     })
     
     // this.submitFormData.emit({

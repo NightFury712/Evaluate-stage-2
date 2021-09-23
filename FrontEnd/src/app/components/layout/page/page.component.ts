@@ -31,10 +31,6 @@ export class PageComponent implements OnInit {
   importPopupFlag: Boolean = false;
   exportPopupFlag: Boolean = false;
   spinnerFlag: Boolean = false;
-  popupInfoFlag: any = {
-    export: false,
-    import: false
-  }
   //#endregion
 
   constructor( private customerService: CustomerService) {}
@@ -67,6 +63,18 @@ export class PageComponent implements OnInit {
    */
   closeExportPopup() {
     this.exportPopupFlag = false;
+  }
+  /**
+   * Hàm xử lý ẩn/hiện spinner
+   * @param flag cờ trạng trái
+   * Author: HHDang (22/09/2021)
+   */
+  toggleSpinner(flag: Boolean) {
+    if(flag === true) {
+      this.spinnerFlag = true;
+    } else {
+      this.spinnerFlag = false;
+    }
   }
   /**
    * Hàm xử lý upload data lên server
@@ -111,7 +119,7 @@ export class PageComponent implements OnInit {
     // Lấy thông tin tổng số trang
     this.pageInfo.totalPage = data.TotalPage;
     // Lấy thông tin tổng số bản ghi
-    this.pageInfo.totalRecord= data.TotalRecord;
+    this.pageInfo.totalRecord = data.TotalRecord;
     // Lấy thông tin danh sách khách hàng
     this.customers = data.Data;
   }

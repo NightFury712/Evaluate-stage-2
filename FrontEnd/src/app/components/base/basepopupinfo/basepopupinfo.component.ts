@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-basepopupinfo',
@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BasepopupinfoComponent implements OnInit {
   @Input() popup: any;
+  @Output() btnSave = new EventEmitter();
 
   constructor() { }
 
@@ -22,6 +23,6 @@ export class BasepopupinfoComponent implements OnInit {
   }
 
   btnSaveClick() {
-    
+    this.btnSave.emit();
   }
 }
