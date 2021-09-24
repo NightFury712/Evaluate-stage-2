@@ -157,8 +157,6 @@ namespace MISA.ApplicationCore.Services
 
             foreach (var entity in entities)
             {
-                var properties = entity.GetType().GetProperties();
-
                 // Thực hiện validate dữ liệu
                 isValid = Validate(entity);
                 if (!isValid)

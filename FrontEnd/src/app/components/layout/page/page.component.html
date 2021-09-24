@@ -12,7 +12,8 @@
 <app-baseimportpopup
   *ngIf="importPopupFlag"
   (closeImportPopup)="closeImportPopup()"
-  (submitFormData)="submitFormData($event)"
+  (reloadData)="getCustomers()"
+  (toggleSpinner)="toggleSpinner($event)"
 >
 </app-baseimportpopup>
 <div class="content">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from 'src/app/entities/Customer';
 import { CustomerService } from 'src/app/services/api/components/customer/customer.service';
+import { BaseService } from 'src/app/services/base/baseservice.service';
 import { CustomerFieldName } from '../../../resources/MISAConst'
 
 @Component({
@@ -8,9 +9,10 @@ import { CustomerFieldName } from '../../../resources/MISAConst'
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.css']
 })
+
 export class PageComponent implements OnInit {
   //#region DECLARE
-  public ths: any = [
+  ths = [
     { fieldName: "CustomerCode", content: CustomerFieldName.CustomerCode, style: { minWidth: 150}},
     { fieldName: "CustomerName", content: CustomerFieldName.CustomerName, style: { minWidth: 250} },
     { fieldName: "PhoneNumber", content: CustomerFieldName.PhoneNumber, style: { minWidth: 150}},
@@ -21,19 +23,19 @@ export class PageComponent implements OnInit {
     { fieldName: "District", content: CustomerFieldName.District, style: { minWidth: 200}},
     { fieldName: "Ward", content: CustomerFieldName.Ward, style: { minWidth: 200}},
   ]
-  public customers: Customer[] = [];
-  public pageInfo: any = {
+  customers: Customer[] = [];
+  pageInfo: any = {
     pageIndex: 0, 
     customerFilter: '', 
-    pageSize: 20
+    pageSize: 10
   }
-  public pagingArray: any = [];
+  pagingArray: any = [];
   importPopupFlag: Boolean = false;
   exportPopupFlag: Boolean = false;
   spinnerFlag: Boolean = false;
   //#endregion
 
-  constructor( private customerService: CustomerService) {}
+  constructor( private customerService: CustomerService, private baseService: BaseService) {}
 
   /**
    * Hàm xử lý khi nhấn nút nhập file
@@ -70,26 +72,33 @@ export class PageComponent implements OnInit {
    * Author: HHDang (22/09/2021)
    */
   toggleSpinner(flag: Boolean) {
-    if(flag === true) {
-      this.spinnerFlag = true;
-    } else {
-      this.spinnerFlag = false;
-    }
+    this.spinnerFlag = flag;
   }
   /**
    * Hàm xử lý upload data lên server
    * @param importData Thông tin về file
    * Author: (15/09/2021)
    */
-  async submitFormData(customers: any) {
+  submitFormData(customers: any) {
     this.spinnerFlag = true;
-    const response = await this.customerService.UploadImportFile(customers);
-    this.spinnerFlag = false;
-
-    // Đóng popup 
-    if(response.MISACode === 200) {
+    this.customerService.UploadImportFile(customers).subscribe((response) => {
+      // Đóng popup 
+      if(response.MISACode === 200) {
+        this.importPopupFlag = false;
+        this.getCustomers();
+      }
+      // Hiển thị thông báo:
+      const result: any = this.baseService.HandleResponseMessage(response);
+      if(result.flag) {
+        this.importPopupFlag = false;
+        this.getCustomers();
+      }
+    },
+    (error) => {
+      console.log(error.response);
       this.importPopupFlag = false;
-    }
+      this.baseService.HandleResponseMessage(error.response);
+    });
   }
   
   /**
@@ -97,38 +106,46 @@ export class PageComponent implements OnInit {
    * @param currentPage trang hiện tại
    * Author: HHDang (13/09/2021)
    */
-  async radioChange(currentPage: any) {
+  radioChange(currentPage: any) {
     // Cập nhật trang hiện tại
     this.pageInfo.pageIndex = currentPage;
+
     // Lấy danh sách khách hàng ở trang hiện tại
-    await this.getCustomers();
-    // Khởi tạo lại mảng số trang
-    this.pagingArray = this.initPagingArray(this.pageInfo);
+    setTimeout(() => {
+      this.getCustomers();
+    }, 0);
   }
   /**
    * Lấy thông tin danh sách khách hàng
    * Author:HHDang (13/09/2021)
    */
-  public async getCustomers() {
+  public getCustomers() {
     // Hiển thị spinner
     this.spinnerFlag = true;
     // Call api lấy dữ liệu
-    const data: any = await this.customerService.GetFilterCustomer(this.pageInfo)
-    // Ẩn spinner
-    this.spinnerFlag = false;
-    // Lấy thông tin tổng số trang
-    this.pageInfo.totalPage = data.TotalPage;
-    // Lấy thông tin tổng số bản ghi
-    this.pageInfo.totalRecord = data.TotalRecord;
-    // Lấy thông tin danh sách khách hàng
-    this.customers = data.Data;
+    this.customerService.GetFilterCustomer(this.pageInfo).subscribe((data) => {
+      // Lấy thông tin tổng số trang
+      this.pageInfo.totalPage = data.TotalPage;
+      // Lấy thông tin tổng số bản ghi
+      this.pageInfo.totalRecord = data.TotalRecord;
+      // Lấy thông tin danh sách khách hàng
+      this.customers = data.Data;
+      // Ẩn spinner
+      this.spinnerFlag = false;
+      // Khởi tạo lại mảng số trang
+      this.pagingArray = this.initPagingArray(this.pageInfo);
+    },
+    (error) => {
+      this.spinnerFlag = false;
+      console.log(error);
+    })
   }
   /**
-     * Hàm khởi tạo mảng số trang
-     * @param {Object} pageInfo Thông tin phân trang 
-     * @returns Mảng số trang
-     * Author: HHDang (13/09/2021)
-     */
+   * Hàm khởi tạo mảng số trang
+   * @param {Object} pageInfo Thông tin phân trang 
+   * @returns Mảng số trang
+   * Author: HHDang (13/09/2021)
+   */
    initPagingArray(pageInfo: any): any {
     let arr = [];
     // Gán thông tin tổng số trang
@@ -172,8 +189,7 @@ export class PageComponent implements OnInit {
     }
   }
   
-  async ngOnInit() {
-    await this.getCustomers();
-    this.pagingArray = this.initPagingArray(this.pageInfo);
+  ngOnInit() {
+    this.getCustomers();
   };
 }

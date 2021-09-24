@@ -1,37 +1,44 @@
 import { Injectable } from '@angular/core';
 import { MISACode } from '../../resources/MISAEnums';
-import { Icons } from 'src/app/resources/MISAConst';
+import { Toasts } from 'src/app/resources/MISAConst';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BaseserviceService {
 
-  constructor() { }
+export class BaseService {
 
-  public HandleResponseMessage(response: any): any {
+  constructor(private toastService: ToastrService) { }
+
+  /**
+   * Hàm xử lý thông điệp trả về khi gọi api
+   * @param response thông điệp phản hồi
+   * @returns Kết quả và thông điệp
+   * Author: HHDang (24/09/2021)
+   */
+  public HandleResponseMessage(response: any): Object {
     let result;
     if( response.MISACode === MISACode.Ok) 
     {
       result = {
-        isShow: false,
+        flag: true,
         messenger: response.Messenger,
-        icon: Icons.success
-      }
+      };
+      this.toastService.success(response.Messenger)
     } 
     else if( response.MISACode === MISACode.Exception)
     {
       result = {
-        isShow: false,
+        flag: true,
         messenger: response.Messenger,
-        icon: Icons.error
-      }
+      };
+      this.toastService.error(response.Messenger)
     } else 
     {
       result = {
-        isShow: true,
+        flag: false,
         messenger: response.Messenger,
-        icon: Icons.error
       }
     }
     return result;

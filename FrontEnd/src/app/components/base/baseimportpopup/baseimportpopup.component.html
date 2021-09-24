@@ -1,3 +1,9 @@
+<app-basepopupinfo
+[popup]="popup"
+*ngIf="popup.isShow"
+(btnSave)="btnSavePopupInfo()"
+>
+</app-basepopupinfo>
 <div class="dark-background import-popup-background"></div>
 <div class="import-popup middle">
   <div class="popup-header flex">
@@ -75,7 +81,9 @@
               </th>
             </thead>
             <tbody>
-              <tr *ngFor="let item of importField; index as index">
+              <tr 
+                *ngFor="let item of importField; index as index"
+              >
                 <td class="td-checkbox">
                   <input
                     type="checkbox"

@@ -32,7 +32,19 @@ namespace MISA.ApplicationCore.EmailServices.Services
             emailMessage.From.Add(new MailboxAddress(_emailConfig.From));
             emailMessage.To.AddRange(message.To);
             emailMessage.Subject = message.Subject;
-            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = message.Content };
+            //emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = message.Content };
+
+            var bodyBuilder = new BodyBuilder { HtmlBody = string.Format("<h2>{0}</h2>", message.Content) };
+
+            if(message.Attachments != null && message.Attachments.Any())
+            {
+                string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string fileName = "DSKhachHang.xlsx";
+
+                bodyBuilder.Attachments.Add(fileName, message.Attachments, ContentType.Parse(contentType));
+            }
+
+            emailMessage.Body = bodyBuilder.ToMessageBody();
 
             return emailMessage;
         }
@@ -51,7 +63,6 @@ namespace MISA.ApplicationCore.EmailServices.Services
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
                 finally

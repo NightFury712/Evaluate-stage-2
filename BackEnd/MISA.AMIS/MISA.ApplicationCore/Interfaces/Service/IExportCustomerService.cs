@@ -9,6 +9,6 @@ namespace MISA.ApplicationCore.Interfaces.Service
 {
     public interface IExportCustomerService : IBaseService<Customer>
     {
-        void ExportCustomers(int start, int end);
+        byte[] ExportCustomers(int start, int end);
     }
 }

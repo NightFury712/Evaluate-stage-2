@@ -47,3 +47,9 @@ D:\Tài liệu học tập\Back-end\MISA.AMIS\MISA.AMIS\obj\Debug\net5.0\MISA.AM
 D:\Tài liệu học tập\Back-end\MISA.AMIS\MISA.AMIS\bin\Debug\net5.0\MailKit.dll
 D:\Tài liệu học tập\Back-end\MISA.AMIS\MISA.AMIS\bin\Debug\net5.0\MimeKit.dll
 D:\Tài liệu học tập\Back-end\MISA.AMIS\MISA.AMIS\bin\Debug\net5.0\NETCore.MailKit.dll
+D:\Tài liệu học tập\Back-end\MISA.AMIS\MISA.AMIS\bin\Debug\net5.0\EPPlus.dll
+D:\Tài liệu học tập\Back-end\MISA.AMIS\MISA.AMIS\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
+D:\Tài liệu học tập\Back-end\MISA.AMIS\MISA.AMIS\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+D:\Tài liệu học tập\Back-end\MISA.AMIS\MISA.AMIS\bin\Debug\net5.0\Microsoft.IO.RecyclableMemoryStream.dll
+D:\Tài liệu học tập\Back-end\MISA.AMIS\MISA.AMIS\bin\Debug\net5.0\System.IO.Pipelines.dll
+D:\Tài liệu học tập\Back-end\MISA.AMIS\MISA.AMIS\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll

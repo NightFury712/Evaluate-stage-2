@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BasebuttonComponent } from './components/base/basebutton/basebutton.component';
 import { BasetextboxComponent } from './components/base/basetextbox/basetextbox.component';
@@ -22,6 +22,8 @@ import { FormsModule } from '@angular/forms';
 import { BasespinnerComponent } from './components/base/basespinner/basespinner.component';
 import { BaseradiobtnComponent } from './components/base/baseradiobtn/baseradiobtn.component';
 import { BasepopupinfoComponent } from './components/base/basepopupinfo/basepopupinfo.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -48,7 +50,12 @@ import { BasepopupinfoComponent } from './components/base/basepopupinfo/basepopu
     RouterModule.forRoot(AppRoutes),
     HttpClientModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      progressBar: true,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,7 +16,7 @@ namespace MISA.ApplicationCore.Entities
 
     }
     /// <summary>
-    /// Atribute dùng để kiểm tra trường bị lặp lại
+    /// Attribute dùng để kiểm tra trường bị lặp lại
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class CheckDuplicate : Attribute
@@ -24,7 +24,7 @@ namespace MISA.ApplicationCore.Entities
 
     }
     /// <summary>
-    /// Atribute dùng để xác đinh khóa chính
+    /// Attribute dùng để xác đinh khóa chính
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class PrimaryKey : Attribute
@@ -32,7 +32,7 @@ namespace MISA.ApplicationCore.Entities
 
     }
     /// <summary>
-    /// Atribute dùng để kiểm tra độ dài tối đa của dữ liệu
+    /// Attribute dùng để kiểm tra độ dài tối đa của dữ liệu
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class MaxLength : Attribute
@@ -47,7 +47,7 @@ namespace MISA.ApplicationCore.Entities
     }
 
     /// <summary>
-    /// Atribute dùng để validate email
+    /// Attribute dùng để validate email
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class ValidateEmail : Attribute
@@ -55,7 +55,7 @@ namespace MISA.ApplicationCore.Entities
 
     }
     /// <summary>
-    /// Atribute dùng để validate số điện thoại
+    /// Attribute dùng để validate số điện thoại
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class ValidatePhoneNumber : Attribute
@@ -63,10 +63,18 @@ namespace MISA.ApplicationCore.Entities
 
     }
     /// <summary>
-    /// Atribute dùng để validate các trường là số
+    /// Attribute dùng để validate các trường là số
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class ValidateNumber : Attribute
+    {
+
+    }
+    /// <summary>
+    /// Attribute dùng để chọn trường xuất khẩu
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property)]
+    public class ExportField : Attribute
     {
 
     }

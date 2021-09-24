@@ -169,6 +169,15 @@ namespace MISA.ApplicationCore.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Xuất khẩu dữ liệu thành công!.
+        /// </summary>
+        public static string SR_Success_Export {
+            get {
+                return ResourceManager.GetString("SR_Success_Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nhập khẩu dữ liệu thành công!.
         /// </summary>
         public static string SR_Success_Import {

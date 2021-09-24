@@ -153,6 +153,9 @@
   <data name="SR_Success_Delete" xml:space="preserve">
     <value>Xóa bản ghi thành công!</value>
   </data>
+  <data name="SR_Success_Export" xml:space="preserve">
+    <value>Xuất khẩu dữ liệu thành công!</value>
+  </data>
   <data name="SR_Success_Import" xml:space="preserve">
     <value>Nhập khẩu dữ liệu thành công!</value>
   </data>

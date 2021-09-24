@@ -1,0 +1,85 @@
+.table-function {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.table-function .table-dropdown {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.table-function .table-dropdown .m-btn-dropdown {
+  width: 46px;
+  background: none;
+  padding: 8px 10px;
+}
+
+.table-function .table-dropdown .m-btn-dropdown:focus .btn-arrow-container {
+  border: 1px solid #0075c0;
+}
+
+.table-function .table-dropdown .btn-arrow-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.table-function .table-dropdown .m-btn-modify {
+  background: none;
+  height: 36px;
+  padding: 6px 0 6px 16px;
+}
+
+.table-function .table-dropdown .m-btn-modify:focus span {
+  border: 1px solid #0075c0;
+}
+
+.table-function .table-dropdown .m-btn-modify span {
+  color: #0075c0;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 13px;
+}
+
+.table-function-dropdown {
+  position: absolute;
+  top: 10px;
+  left: 400px;
+  background-color: #fff;
+  border: 1px solid #cacdd2;
+  border-radius: 2px;
+  box-shadow: 0 0 2px #cacdd2;
+  z-index: 100;
+}
+
+.table-function-dropdown .dropdown-btn-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-function-dropdown .dropdown-btn-list button {
+  transition: all 0.22s ease;
+  padding: 5px 10px;
+  text-align: left;
+}
+
+.table-function-dropdown .dropdown-btn-list button:nth-child(1) {
+  margin-top: 2px;
+}
+
+.table-function-dropdown .dropdown-btn-list button:nth-last-child(1) {
+  margin-bottom: 2px;
+}
+
+.table-function-dropdown .dropdown-btn-list button:hover {
+  color: #2ca01c;
+  background-color: #e5e5e5;
+  font-weight: 500;
+}

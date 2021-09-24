@@ -23,16 +23,20 @@ namespace MISA.ApplicationCore.Services
         #endregion
 
         #region METHODS
-        public void ExportCustomers(int start, int end)
+        public byte[] ExportCustomers(int start, int end)
         {
             var entities = base.ExportEntities(start, end);
+
+            byte[] fileBytes = WriteFile(entities);
+
+            return fileBytes;
         }
 
-        private ExcelPackage WriteFile(IEnumerable<Customer> customers)
+        private byte[] WriteFile(IEnumerable<Customer> customers)
         {
             using(var stream = new MemoryStream())
             {
-                using(var package = new ExcelPackage(stream))
+                using (var package = new ExcelPackage(stream))
                 {
                     // Đặt tên người tạo file
                     package.Workbook.Properties.Author = "Hoàng Hải Đăng";
@@ -44,7 +48,7 @@ namespace MISA.ApplicationCore.Services
                     package.Workbook.Worksheets.Add("DS khách hàng");
 
                     // Lấy sheet vừa add ra để thao tác
-                    ExcelWorksheet ws = package.Workbook.Worksheets[1];
+                    ExcelWorksheet ws = package.Workbook.Worksheets[0];
 
                     // Fontsize mặc định cho cả sheet
                     ws.Cells.Style.Font.Size = 11;
@@ -55,32 +59,42 @@ namespace MISA.ApplicationCore.Services
 
                     var properties = customers.First().GetType().GetProperties();
                     int propsLength = properties.Length;
-
+                    int index = 1;
                     // Khởi tạo thông tin header cho các cột
-                    for(int index = 1; index <= propsLength; index++)
+                    foreach(var property in properties)
                     {
-                        var property = properties[index - 1];
-                        var displayName = string.Empty;
-                        DisplayNameAttribute displayNameAttribute = property.GetCustomAttributes(typeof(DisplayNameAttribute), true).Cast<DisplayNameAttribute>().SingleOrDefault();
-                        if (displayNameAttribute != null)
+                        
+                        if(property.IsDefined(typeof(ExportField), false))
                         {
-                            displayName = displayNameAttribute.DisplayName;
+                            var displayName = string.Empty;
+                            DisplayNameAttribute displayNameAttribute = property.GetCustomAttributes(typeof(DisplayNameAttribute), true).Cast<DisplayNameAttribute>().SingleOrDefault();
+                            if (displayNameAttribute != null)
+                            {
+                                displayName = displayNameAttribute.DisplayName;
+                            }
+                            ws.Cells[rowIndex, index].Value = displayName;
+                            index++;
                         }
-                        ws.Cells[rowIndex, index].Value = displayName;
                     }
 
                     foreach(var customer in customers)
                     {
+                        index = 1;
                         var props = customer.GetType().GetProperties();
                         rowIndex++;
-                        for(int index = 1; index <= propsLength; index++)
+                        foreach(var property in properties)
                         {
-                            var propValue = props[index - 1].GetValue(customer);
-                            ws.Cells[rowIndex, index].Value = propValue;
+                            if (property.IsDefined(typeof(ExportField), false))
+                            {
+                                var propertyValue = property.GetValue(customer);
+                                ws.Cells[rowIndex, index].Value = propertyValue == null ? string.Empty : propertyValue;
+                                index++;
+                            }
                         }
                     }
-                    return package;
+                    package.SaveAs(stream);
                 }
+                return stream.ToArray();
             }
         }
         #endregion

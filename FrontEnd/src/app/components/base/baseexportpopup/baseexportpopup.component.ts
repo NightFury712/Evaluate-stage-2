@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ExportRadioValue, Popup } from '../../../resources/MISAConst';
 import { CustomerService } from 'src/app/services/api/components/customer/customer.service';
+import { BaseService } from 'src/app/services/base/baseservice.service';
 
 @Component({
   selector: 'app-baseexportpopup',
@@ -58,7 +59,7 @@ export class BaseexportpopupComponent implements OnInit {
   exportCustomFlag: Boolean = false;
   
 
-  constructor(private customerSerivce: CustomerService) { 
+  constructor(private customerSerivce: CustomerService, private baseService: BaseService) { 
   }
 
   ngOnInit(): void {
@@ -77,11 +78,11 @@ export class BaseexportpopupComponent implements OnInit {
     this.closeExportPopup.emit()
   }
 
-  async onFormExportSubmit() {
+  onFormExportSubmit() {
     const begin = this.exportIndex.begin;
     const end = this.exportIndex.end;
     const totalRecord = this.pageInfo.totalRecord;
-    const result = this.Validate(begin, end, totalRecord);
+    const result = this.validate(begin, end, totalRecord);
     // Nếu trường nhập liệu ko hợp lệ:
     if(!result.flag) {
       // Gán thông điệp
@@ -92,8 +93,23 @@ export class BaseexportpopupComponent implements OnInit {
     } 
     this.toggleSpinner.emit(true);
     // Nếu trường nhập liệu là hợp lệ thì gọi api:
-    await this.customerSerivce.ExportCustomers(begin, end);
-    this.toggleSpinner.emit(false);
+    this.customerSerivce.ExportCustomers(begin, end).subscribe((resonse) => {
+      // Ẩn spinner
+      this.toggleSpinner.emit(false);
+      // Xử lý response trả về
+      this.baseService.HandleResponseMessage(resonse);
+      // Đóng popup
+      this.closeExportPopup.emit()
+    },
+    (error) => {
+      console.log(error.response);
+      // Ẩn spinner
+      this.toggleSpinner.emit(false);
+      // Xử lý response trả về
+      this.baseService.HandleResponseMessage(error.response);
+      // Đóng popup
+      this.closeExportPopup.emit()
+    });
   }
 
   btnSavePopupInfo() {
@@ -147,7 +163,7 @@ export class BaseexportpopupComponent implements OnInit {
    * @returns Kết quả và thông điệp
    * Author: HHDang (22/09/2021)
    */
-  private Validate(begin: any, end: any, totalRecord: any) {
+  private validate(begin: any, end: any, totalRecord: any) {
     if(!this.isNumbericOrEmpty(begin) || !this.isNumbericOrEmpty(end)) {
       return {
         flag: false,
@@ -180,7 +196,7 @@ export class BaseexportpopupComponent implements OnInit {
     }
   }
   /**
-   * Validate các trường có phải là số hay không
+   * validate các trường có phải là số hay không
    * @param val Giá trị cần validate
    * @returns Kết quả (True/False)
    * Author: HHDang (20/09/2021)

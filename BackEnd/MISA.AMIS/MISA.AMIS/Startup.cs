@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -57,10 +58,17 @@ namespace MISA.AMIS
                 .Get<EmailConfiguration>();
             services.AddSingleton(emailConfig);
 
+            services.Configure<FormOptions>(o =>
+            {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
+
             // Thực hiện DI cho mail service
             services.AddScoped<IEmailSender, EmailSender>();
 
-            // Thực hiện DI
+            // Thực hiện DI cho base
             services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
@@ -75,6 +83,10 @@ namespace MISA.AMIS
             // Thực hiện DI cho việc nhập khẩu khách hàng
             services.AddScoped<IImportCustomerRepository, ImportCustomerRepository>();
             services.AddScoped<IImportCustomerService, ImportCustomerService>();
+
+            // Thực hiện DI cho việc xuất khẩu khách hàng
+            services.AddScoped<IExportCustomerRepository, ExportCustomerRepository>();
+            services.AddScoped<IExportCustomerService, ExportCustomerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

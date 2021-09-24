@@ -60,81 +60,47 @@ namespace MISA.ApplicationCore.Services
 
         protected override bool ValidateCustom(Customer customer)
         {
-            bool isValid = true;
+            bool isValid = false;
             string province = customer.Province;
             string district = customer.District;
             string ward = customer.Ward;
 
-            isValid = _importCustomerRepository.CheckAddressValid("Province", province);
+            if(string.IsNullOrEmpty(province) && string.IsNullOrEmpty(district) && string.IsNullOrEmpty(ward))
+            {
+                isValid = true;
+            }
+
             if(!isValid)
             {
-                var msg = new
+                isValid = _importCustomerRepository.CheckAddressBelongTo("Ward", "District", ward, district);
+                if(!isValid)
                 {
-                    devMsg = new { fieldName = "Province", msg = string.Format(Properties.Resources.SR_Address_NotExist, province) },
-                    userMsg = string.Format(Properties.Resources.SR_Address_NotExist, province),
-                    Code = MISAConst.NotValid
-                };
-                serviceResult.MISACode = MISACode.NotValid;
-                serviceResult.Messenger = string.Format(Properties.Resources.SR_Address_NotExist, province);
-                serviceResult.Data = msg;
-                return isValid;
-            }
-            isValid = _importCustomerRepository.CheckAddressValid("District", district);
-            if (!isValid)
-            {
-                var msg = new
+                    var msg = new
+                    {
+                        devMsg = new { msg = string.Format(Properties.Resources.SR_Address_NotBelongTo, ward, district) },
+                        userMsg = string.Format(Properties.Resources.SR_Address_NotExist, ward, district),
+                        Code = MISAConst.NotValid
+                    };
+                    serviceResult.MISACode = MISACode.NotValid;
+                    serviceResult.Messenger = string.Format(Properties.Resources.SR_Address_NotBelongTo, ward, district);
+                    serviceResult.Data = msg;
+                    return isValid;
+                }
+                // Kiểm tra 
+                isValid = _importCustomerRepository.CheckAddressBelongTo("District", "Province", district, province);
+                if (!isValid)
                 {
-                    devMsg = new { fieldName = "District", msg = string.Format(Properties.Resources.SR_Address_NotExist, district) },
-                    userMsg = string.Format(Properties.Resources.SR_Address_NotExist, district),
-                    Code = MISAConst.NotValid
-                };
-                serviceResult.MISACode = MISACode.NotValid;
-                serviceResult.Messenger = string.Format(Properties.Resources.SR_Address_NotExist, district);
-                serviceResult.Data = msg;
-                return isValid;
-            }
-            isValid = _importCustomerRepository.CheckAddressValid("Ward", ward);
-            if (!isValid)
-            {
-                var msg = new
-                {
-                    devMsg = new { fieldName = "Ward", msg = string.Format(Properties.Resources.SR_Address_NotExist, ward) },
-                    userMsg = string.Format(Properties.Resources.SR_Address_NotExist, ward),
-                    Code = MISAConst.NotValid
-                };
-                serviceResult.MISACode = MISACode.NotValid;
-                serviceResult.Messenger = string.Format(Properties.Resources.SR_Address_NotExist, ward);
-                serviceResult.Data = msg;
-                return isValid;
-            }
-            isValid = _importCustomerRepository.CheckAddressBelongTo("Ward", "District", ward, district);
-            if(!isValid)
-            {
-                var msg = new
-                {
-                    devMsg = new { msg = string.Format(Properties.Resources.SR_Address_NotBelongTo, ward, district) },
-                    userMsg = string.Format(Properties.Resources.SR_Address_NotExist, ward, district),
-                    Code = MISAConst.NotValid
-                };
-                serviceResult.MISACode = MISACode.NotValid;
-                serviceResult.Messenger = string.Format(Properties.Resources.SR_Address_NotBelongTo, ward, district);
-                serviceResult.Data = msg;
-                return isValid;
-            }
-            // Kiểm tra 
-            isValid = _importCustomerRepository.CheckAddressBelongTo("District", "Province", district, province);
-            if (!isValid)
-            {
-                var msg = new
-                {
-                    devMsg = new { msg = string.Format(Properties.Resources.SR_Address_NotBelongTo, district, province) },
-                    userMsg = string.Format(Properties.Resources.SR_Address_NotExist, district, province),
-                    Code = MISAConst.NotValid
-                };
-                serviceResult.MISACode = MISACode.NotValid;
-                serviceResult.Messenger = string.Format(Properties.Resources.SR_Address_NotBelongTo, district, province);
-                serviceResult.Data = msg;
-                return isValid;
+                    var msg = new
+                    {
+                        devMsg = new { msg = string.Format(Properties.Resources.SR_Address_NotBelongTo, district, province) },
+                        userMsg = string.Format(Properties.Resources.SR_Address_NotExist, district, province),
+                        Code = MISAConst.NotValid
+                    };
+                    serviceResult.MISACode = MISACode.NotValid;
+                    serviceResult.Messenger = string.Format(Properties.Resources.SR_Address_NotBelongTo, district, province);
+                    serviceResult.Data = msg;
+                    return isValid;
+                }
             }
             return isValid;
         }

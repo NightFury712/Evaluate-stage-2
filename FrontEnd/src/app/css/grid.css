@@ -9,7 +9,7 @@
     max-height: none;
     /* overflow: auto; */
     box-sizing: border-box;
-    min-height: 447px;
+    min-height: 440px;
 }
 
 table {
@@ -102,36 +102,36 @@ table tbody tr.actived td {
     left: 16px;
 }
 
-.th-EmployeeCode + th {
+.th-CustomerCode + th {
     border-left: none !important;
 }
 
-.td-EmployeeCode + td {
+.td-CustomerCode + td {
     border-left: none !important;
 }
 
-.th-EmployeeCode {
+.th-CustomerCode {
     border-right: 1px solid #c7c7c7 !important;
 }
 
-.th-EmployeeCode,
-.td-EmployeeCode {
+.th-CustomerCode,
+.td-CustomerCode {
     position: sticky;
     left: 56px;
     z-index: 1;
 }
 
-.td-EmployeeCode {
+.td-CustomerCode {
     border-right: 1px dotted #c7c7c7 !important; 
 }
 
-.th-EmployeeCode,
+.th-CustomerCode,
 .th-function,
 .th-checkbox {
     background-color: #eceef1;
 }
 
-.td-EmployeeCode,
+.td-CustomerCode,
 .td-function,
 .td-checkbox {
     background-color: #fff;

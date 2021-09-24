@@ -287,7 +287,7 @@ namespace MISA.Infarstructure
             {
                 var parameter = new DynamicParameters();
                 var totalRecord = (end - start) + 1;
-                parameter.Add("StartIndex", start, DbType.Int32);
+                parameter.Add("StartIndex", start - 1, DbType.Int32);
                 parameter.Add("TotalRecord", totalRecord, DbType.Int32);
 
                 // Thực hiện command
@@ -360,7 +360,7 @@ namespace MISA.Infarstructure
                 $"Proc_Check{addrChild}In{addrParent}",
                 parameter,
                 commandType: CommandType.StoredProcedure).FirstOrDefault();
-            return true;
+            return result;
         }
 
         /// <summary>

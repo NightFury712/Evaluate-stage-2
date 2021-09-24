@@ -30,7 +30,6 @@ export class ImportfileService {
       
       subscriber.next(data);
       subscriber.complete();
-
     };
 
     reader.readAsBinaryString(file);

@@ -23,14 +23,12 @@ namespace MISA.CukCuk.Web.Api
     {
         #region Declare
         private readonly IEmployeeService _employeeService;
-        private readonly IEmailSender _emailSender;
         #endregion
 
         #region Constructor
-        public EmployeesController(IEmployeeService employeeService, IEmailSender emailSender):base(employeeService)
+        public EmployeesController(IEmployeeService employeeService):base(employeeService)
         {
             _employeeService = employeeService;
-            _emailSender = emailSender;
         }
         #endregion
 
@@ -50,9 +48,6 @@ namespace MISA.CukCuk.Web.Api
         {
             try
             {
-                var message = new Message(new string[] { "haidangk63@gmail.com" }, "Test email", "This is a content of email.");
-                _emailSender.SendEmail(message);
-
                 var employees = _employeeService.GetEmployeePaging(pageSize, pageIndex, employeeFilter);
 
                 return Ok(employees);
